@@ -54,8 +54,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x000028258fb3f2a85f4b3bd18963c2f890b724676f90b8fd53b182a809447c9b"))
-    (19, uint256("0x000028258fb3f2a85f4b3bd18963c2f890b724676f90b8fd53b182a809447c9b"));
+    (0, uint256("0x000028258fb3f2a85f4b3bd18963c2f890b724676f90b8fd53b182a809447c9b"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
     1543313433, // * UNIX timestamp of last checkpoint block
@@ -120,8 +119,7 @@ public:
         nMaturity = 10;
         nMasternodeCountDrift = 20;
         nMaxMoneyOut = 100000000 * COIN; //100,000,000
-
-        /** Height or Time Based Activations **/
+        /** Hight or Time Based Activations **/
         nLastPOWBlock = 1000000;
         nModifierUpdateBlock = 999999999;
         nZerocoinStartHeight = 100000;
@@ -131,7 +129,6 @@ public:
         nBlockRecalculateAccumulators = ~1; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = ~1; //First block that bad serials emerged
         nBlockLastGoodCheckpoint = ~1; //Last valid accumulator checkpoint
-
         const char* pszTimestamp = "LocalTradeCoin Release";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
@@ -146,26 +143,6 @@ public:
         genesis.nTime = 1543413680;  // 11/27/2018 @ 10:13am (UTC)
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 4746;
-
-        /* printf("Generating genesis block...\n");
-        uint32_t nounce = 1;
-     		while(1) {
-          printf("Nounce: %d\n", nounce);
-     			genesis.nNonce = nounce;
-     			hashGenesisBlock = genesis.GetHash();
-       		if(hashGenesisBlock.GetHex() < std::string("0000ffffff000000000000000000000000000000000000000000000000000000")) {
-       			//if(hashGenesisBlock.GetHex() < bnProofOfWorkLimit.GetHex()) {
-       			//if(consensus.hashGenesisBlock.GetHex() < std::string("0000082da923a04678394f873852c7f08b777af30224b6e23296f586370e80ae")) {
-       				printf("nounce: %x\n",nounce);
-       				break;
-       			} else {
-       				if( nounce % 10000 == 0)
-       					printf("nounce: %x, hash: %s, merklehash:%s\n",nounce, hashGenesisBlock.GetHex().c_str(),genesis.hashMerkleRoot.ToString().c_str());
-       				++nounce;
-       			}
-     		}
-        printf("genesis: %s\n",hashGenesisBlock.GetHex().c_str());
-        printf("merklehash: %s\n",genesis.hashMerkleRoot.ToString().c_str()); */
         hashGenesisBlock = genesis.GetHash();
         assert(hashGenesisBlock == uint256("0x000028258fb3f2a85f4b3bd18963c2f890b724676f90b8fd53b182a809447c9b"));
         assert(genesis.hashMerkleRoot == uint256("0xbc2ce94abdde23e5f393e44202528c4fc31ecd80d43b2f0309b739a19af3e570"));
@@ -176,10 +153,9 @@ public:
         vSeeds.push_back(CDNSSeedData("107.175.197.6", "107.175.197.6"));
         vSeeds.push_back(CDNSSeedData("149.56.96.22", "149.56.96.22"));
         vSeeds.push_back(CDNSSeedData("149.56.96.48", "149.56.96.48"));
-
-		    base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 48);
-		    base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 4);
-		    base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 28+128);
+	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 48);
+	base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 4);
+	base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 28+128);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x06, 0x89, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x06, 0x89, 0xAC, 0xE9};
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x81)(0x01)(0x00)(0xbc).convert_to_container<std::vector<unsigned char> >();
@@ -192,12 +168,10 @@ public:
         fSkipProofOfWorkCheck = false;
         fTestnetToBeDeprecatedFieldRPC = false;
         fHeadersFirstSyncingActive = false;
-
         nPoolMaxTransactions = 3;
         strSporkKey = "0437EF172051D18387D5777C5216B1E28A49336FFBC4A691F5F8E69A162E0B005432BB37837C1CEB4ADAF53E1D5051FC0869058C0FC82DFE6D5EC8630CD58938BE";
         strObfuscationPoolDummyAddress = "D87q2gC9j6nNrnzCsg4aY6bHMLsT9nUhEw";
         nStartMasternodePayments = 1403728576; //Wed, 25 Jun 2014 20:36:16 GMT
-
         /** Zerocoin */
         zerocoinModulus = "c95577b6dce0049b0a20c779af38079355abadde1a1d80c353f6cb697a7ae5a087bad39caa5798478551d0f9d91e6267716506f32412de1d19d17588765eb9502b85c6a18abdb05791cfd8b734e960281193705eeece210920cc922b3af3ceb178bf12c22eb565d5767fbf19545639be8953c2c38ffad41f3371e4aac750ac2d7bd614b3faabb453081d5d88fdbb803657a980bc93707e4b14233a2358c97763bf28f7c933206071477e8b371f229bc9ce7d6ef0ed7163aa5dfe13bc15f7816348b328fa2c1e69d5c88f7b94cee7829d56d1842d77d7bb8692e9fc7b7db059836500de8d57eb43c345feb58671503b932829112941367996b03871300f25efb5";
         nMaxZerocoinSpendsPerTransaction = 7; // Assume about 20kb each
